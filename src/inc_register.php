@@ -23,8 +23,8 @@ if(empty($username) || empty($email) || empty($password) || empty($con_password)
 }
 
 // Permitted Characters
-$patern_name = "[A-Za-z]+[A-Za-z0-9_]*[A-Za-z0-9]";
-$patern_pass = "[A-Za-z0-9_]";
+$patern_name = "/[A-Za-z]+[A-Za-z0-9_]*[A-Za-z0-9]/";
+
 
 //Check if username is valid - permitted characters and min-length
 if(!preg_match($patern_name, $username) || strlen($username) >25) {
@@ -32,7 +32,7 @@ if(!preg_match($patern_name, $username) || strlen($username) >25) {
 }
 
 // Check if password is valid
-if(!preg_match($pattern_pass, $password) || strlen($password) < 8) {
+if(strlen($password) < 8) {
     exit('Your password is not valid!');
 }
 
@@ -44,10 +44,6 @@ if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 if($password != $con_password) {
     exit('Your password is incorrect!');
 }
-
-// Check for captcha
-if (!isset($_POST["captcha"]) && $_POST["captcha"] == "" && $_SESSION["code"] != $_POST["captcha"]) {
-    exit('There is a problem with captcha!');
 
 try {
     // Check if email is unique - +username
