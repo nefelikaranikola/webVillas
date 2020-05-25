@@ -8,20 +8,32 @@ include 'layout/header.php';
 ?>
 
 <!-- HTML -->
-<main class="bg-light py-4">
+<main style="background-image: url(../img/bg.png);">
     <div class="container py-5" style="height: 85vh;">
-        <div class="row">
-            <div class="col-6 offset-3 p-5 my-5 bg-white border border-secondary rounded">
+        <div class="row my-5">
+            <div class="col-6 offset-3 p-5 bg-light border border-secondary rounded">
                 <h3 class="mb-4 text-center">Login You</h3>
 
-                <form class="">
+                <?php if(!empty($_GET['success'])) : ?>
+                    <div class="alert alert-success text-center" role="alert">
+                        <?= $_GET['success'] ?>
+                    </div>
+                <?php endif; ?>
+
+                <?php if(!empty($_GET['error'])) : ?>
+                    <div class="alert alert-danger text-center" role="alert">
+                        <?= $_GET['error'] ?>
+                    </div>
+                <?php endif; ?>
+
+                <form action="src/inc_login.php" method="POST">
                     <div class="form-group">
-                        <label for="username">Username</label>
+                        <label for="email">Email</label>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
+                                <span class="input-group-text" id="basic-addon1"><i class="fas fa-at"></i></span>
                             </div>
-                            <input id="username" type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                            <input id="email" name="email" type="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1">
                         </div>
                     </div>
 
@@ -31,7 +43,7 @@ include 'layout/header.php';
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"></i></span>
                             </div>
-                            <input id="password" type="password" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                            <input id="password" name="password" type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
                         </div>
                     </div>
 

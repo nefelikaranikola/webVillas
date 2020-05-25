@@ -22,25 +22,25 @@ include 'layout/header.php';
         </div>
     </nav>
 
-    <!--<div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="toast-header">
-            <strong class="mr-auto">webVillas</strong>
-            <small class="text-muted">11 mins ago</small>
-            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="toast-body">
-            Login and book your Villa now!
-        </div>
-    </div>-->
-
     <div class="container">
+        <div class="row">
+            <div class="col-md mx-5">
+                <?php if(!empty($_GET['success'])) : ?>
+                    <div class="alert alert-success text-center" role="alert">
+                        <?= $_GET['success'] ?>
+                    </div>
+                <?php endif; ?>
+
+                <?php if(!empty($_GET['error'])) : ?>
+                    <div class="alert alert-danger text-center" role="alert">
+                        <?= $_GET['error'] ?>
+                    </div>
+                <?php endif; ?>
+            </div>
+        </div>
 
         <div class="row">
-
             <div class="col-md-3 mx-4">
-
                 <div class="form-group p-4 mt-5 border border-secondary rounded bg-white">
                     <label for="formControlRange" class="mb-3" style="font-weight: bold;"><i class="fas fa-euro-sign"></i>  Set price</label>
                     <input type="range" class="form-control-range" id="formControlRange">

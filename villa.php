@@ -14,7 +14,7 @@ include 'layout/header.php';
         <div class="container">
             <ol class="breadcrumb pb-0">
                 <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                <li class="breadcrumb-item"><a href="login.php">Browse</a></li>
+                <li class="breadcrumb-item"><a href="browse.php">Browse</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Villa</li>
             </ol>
         </div>
@@ -90,15 +90,15 @@ include 'layout/header.php';
             </div>
         </div>
 
-        <div class="row">
+        <div class="row align-items-center pt-5">
             <div class="col-md-8">
-                <div class="m-3 pt-5">
+                <div>
                     <h3><i class="fas fa-map-marker-alt"></i> Great Location</h3>
                     <p>95% of recent guests gave the location a 5-star rating.</p>
                     <h6 class="text-muted">Santorine · Cyclades · Greece</h6>
                     <div class="mapouter">
                         <div class="gmap_canvas">
-                            <iframe width="600" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=Santorine&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                            <iframe width="100%" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=Santorine&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
                             <a href="https://www.embedgooglemap.net/blog/nordvpn-coupon-code/">embedgooglemap.net</a>
                         </div>
                         <style>.mapouter{position:relative;text-align:right;height:500px;width:100%;}.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;}</style>
@@ -106,7 +106,7 @@ include 'layout/header.php';
 
                 </div>
             </div>
-            <div class="col-md-4 mt-5 pt-5">
+            <div class="col-md-4">
                 <div class="m-3 mt-5 pt-5 text-center">
                     <h3><i class="fas fa-phone"></i> Contact Host</h3>
                     <p class="mt-5">+30 6946946571</p>
