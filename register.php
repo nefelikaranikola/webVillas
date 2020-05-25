@@ -99,7 +99,7 @@ if(isset($_SESSION['inputs'])) {
                         <button class="btn btn-secondary px-3" type="submit">Sign Up</button>
                     </div>
 
-                    <div class="g-recaptcha  text-center mt-3 px-3" data-sitekey="== Your site Key =="></div>
+                    <div class="g-recaptcha  text-center mt-3 px-3" data-sitekey="6LdRGvwUAAAAAOWd4aEqW200GY_CLwHJ6hPsU8Yv"></div>
 
                     <small class="form-text text-muted mt-5 mb-0 text-center">
                         *Username and password must contain letters, numbers and '_'.
