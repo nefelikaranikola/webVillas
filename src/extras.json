@@ -1,0 +1,17 @@
+{
+    "Wifi": "fas fa-wifi",
+    "Pool": "fas fa-swimming-pool",
+    "Sea view": "fas fa-water",
+    "Aircondition": "far fa-snowflake",
+    "Fireplace": "fas fa-fire-alt",
+    "Playroom": "fas fa-gamepad",
+    "Jacuzzi": "fas fa-hot-tub",
+    "Elevator": "fas fa-angle-up",
+    "Internal stairway": "fas fa-shoe-prints",
+    "Balcony": "fas fa-grip-lines",
+    "Garden": "fab fa-pagelines",
+    "Storage": "fas fa-archive",
+    "Safety door": "fas fa-door-closed",
+    "Parking": "fas fa-warehouse",
+    "Solar panel": "fas fa-solar-panel"
+}

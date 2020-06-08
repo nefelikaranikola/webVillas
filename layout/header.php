@@ -23,7 +23,7 @@
 
 
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3">
+        <nav class="navbar navbar-expand-lg <?= (isset($_COOKIE['css']) && $_COOKIE['css'] == 'light') ? 'navbar_light bg-light' : 'navbar-dark bg-dark' ?> py-3">
             <div class="container">
                 <a class="navbar-brand" href="/">
                     <img src="https://artisweb.gr/wp-content/uploads/2020/04/ArtisWeb-logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
@@ -51,7 +51,11 @@
 
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="login.php">Login</a>
+                            <?php if(empty($_SESSION['user_id'])) : ?>
+                                <a class="nav-link" href="login.php">Login</a>
+                            <?php else : ?>
+                                <a class="nav-link" href="logout.php">Logout</a>
+                            <?php endif; ?>
                         </li>
 
                         <li class="nav-item ml-0 ml-md-2">

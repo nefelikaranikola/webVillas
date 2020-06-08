@@ -16,4 +16,11 @@ body {
 	object-fit:cover;
 }
 
+.card-img-cover {
+    width: 100%!important;
+    margin: 0 auto;
+    height: 12rem;
+    object-fit: cover;
+}
+
 

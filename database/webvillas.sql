@@ -1,6 +1,6 @@
-DROP SCHEMA IF EXISTS webvillas;
-CREATE SCHEMA webvillas CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE webvillas;
+DROP SCHEMA IF EXISTS dimitris_webvillas;
+CREATE SCHEMA dimitris_webvillas CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE dimitris_webvillas;
 
  CREATE TABLE users (
 		`id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -15,12 +15,12 @@ USE webvillas;
  CREATE TABLE villas (
 		`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
         `user_id` INT UNSIGNED NOT NULL,
-		`title` VARCHAR(150) NOT NULL,
+		`title` VARCHAR(255) NOT NULL,
         `excerpt` TEXT NOT NULL,
         `description` TEXT NOT NULL,
         `state` VARCHAR(50) NOT NULL,
+        `city` VARCHAR(50) NOT NULL,
         `address` VARCHAR(50),
-        `postal_code` MEDIUMINT UNSIGNED NOT NULL,
         `lat` VARCHAR(50) NOT NULL,
         `long` VARCHAR(50) NOT NULL,
         `capacity` TINYINT UNSIGNED NOT NULL,
@@ -34,13 +34,13 @@ USE webvillas;
         `bathrooms` TINYINT UNSIGNED NOT NULL,
         `WC` TINYINT UNSIGNED,
         `kitchen` TINYINT UNSIGNED,
-        `living_room` TINYINT UNSIGNED,
+        `living_room` TINYINT UNSIGNED NOT NULL,
         `rating` ENUM('1','2','3') NOT NULL,
         `extras` VARCHAR(255),
         `price` MEDIUMINT UNSIGNED NOT NULL,
         `name` VARCHAR(25) NOT NULL,
         `surname` VARCHAR(25) NOT NULL,
-        `phone` INT NOT NULL,
+        `phone` VARCHAR(10) NOT NULL,
         `email` VARCHAR(100) NOT NULL,
         PRIMARY KEY (id),
         FOREIGN KEY (user_id) REFERENCES users(id)
@@ -56,14 +56,3 @@ USE webvillas;
  );
 
 
-/* Inserts */
-INSERT INTO `dimitris_webvillas`.`users` (`username`, `email`, `password`, `activation_code`, `status`) VALUES ('nefeli', 'nefikaranikola@gmail.com', '10071989', '555555', '1');
-
-INSERT INTO `dimitris_webvillas`.`villas` (`user_id`, `title`,`excerpt`, `description`, `state`, `address`, `postal_code`, `lat`, `long`, `capacity`, `building_area`, `plot_area`, `type`, `style`, `zone`, `construction`, `bedrooms`, `bathrooms`, `WC`, `kitchen`, `living_room`, `rating`,`extras`, `price`,`name`, `surname`, `phone`, `email`) VALUES
-	('1', 'Exotic Villa', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, consequatur voluptate! Tenetur culpa facere sequi.', 'D',  'Macedonia', 'Chalkidiki', '34300', '1234', '1234', '6', '350', '2000', 'Maisonete', 'Neoclassic', 'Countryside', '2000','3', '3', '2', '2', '2', '3','', '5000','Joan', 'Doe', '6946351573', 'joan@gmai.com'),
-	('1', 'Skyfall Villa', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, consequatur voluptate! Tenetur culpa facere sequi.', 'D',  'Attiki', 'Parnitha', '36700', '4567', '567', '6', '350', '2000', 'Maisonete', 'Neoclassic', 'Countryside', '1990','3', '3', '2', '2', '2', '3','', '10000','Joan', 'Doe', '6946351573', 'joan@gmai.com'),
-	('1', 'Wood & Stone', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, consequatur voluptate! Tenetur culpa facere sequi.', 'D',  'Trikala', 'Pertouli', '36500', '654', '841', '4', '200', '1500', 'Dublex', 'New Built', 'Residential', '2010', '1', '2', '1', '1', '1', '3','', '10000','Joan', 'Doe', '6946351573', 'joan@gmai.com'),
-	('1', 'Oia Villa', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, consequatur voluptate! Tenetur culpa facere sequi.', 'D',  'Cyclades', 'Oia', '33033', '8523', '3258', '2', '150', '400', 'Ground Floor', 'Luxury', 'Countryside', '2010', '337433', '21', '22', '69', '1', '3','', '333','Joan', 'Doe', '6946351573', 'joan@gmai.com'),
-	('1', 'Pelion Paradise', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, consequatur voluptate! Tenetur culpa facere sequi.', 'D',  'Magnisia', 'Tsagarada', '37300', '6587', '12345', '8', '630', '5000', 'Maisonete', 'New Built', 'Countryside', '2010', '4', '4', '3', '3', '3', '3','', '7100','Joan', 'Doe', '6946351573', 'joan@gmai.com'),
-	('1', 'Santorine Villa', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, consequatur voluptate! Tenetur culpa facere sequi.', 'D',  'Cyclades', 'Santorine', '33033', '6589', '9856', '2', '120', '100', 'Ground Floor', 'Luxury', 'Residential', '2000', '1', '1', '1', '1', '1', '2','', '2500','Joan', 'Doe', '6946351573', 'joan@gmai.com')
-;
