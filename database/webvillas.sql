@@ -54,5 +54,3 @@ USE dimitris_webvillas;
         PRIMARY KEY (id),
         FOREIGN KEY (villa_id) REFERENCES villas(id)
  );
-
-
