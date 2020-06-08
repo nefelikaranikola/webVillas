@@ -56,7 +56,6 @@ if(isset($_GET['state']) && in_array($_GET['state'], $states)) {
 
 if($filters) {
     $sql .= ' WHERE';
-    //$sql .= ' AND';
 }
 
 if(!is_null($min_price)) {
@@ -195,7 +194,7 @@ $records = $statement->fetchAll();
                                         <p class="pr-4"><i class="fas fa-male"></i><i class="fas fa-female"></i> <?= $record['capacity'] ?></p>
                                         <p class="pr-4"><i class="fas fa-bed"></i> <?= $record['bedrooms'] ?></p>
                                         <p class="pr-4"><i class="fas fa-star"></i> <?= $record['rating'] ?></p>
-                                        <p class="pr-4"><i class="fas fa-euro-sign"></i> <?= $record['price'] ?></p>
+                                        <p class="pr-4"><i class="fas fa-euro-sign"></i> <?= $record['price'] ?> / night</p>
                                     </div>
 
                                     <div class="d-flex">

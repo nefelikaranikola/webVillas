@@ -14,4 +14,5 @@ $statement->execute([
 ]);
 $photos = $statement->fetchAll();
 
+//var_dump($record); die;
 //print_r($record); die;

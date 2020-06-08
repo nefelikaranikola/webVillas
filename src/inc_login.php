@@ -24,7 +24,7 @@ try {
         header("Location: ../login.php?error=User doesn't exist!");
         exit();
     }
-
+    //var_dump($record); die;
     $record = $statement->fetch();
 
     // Decrypt Password

@@ -16,7 +16,7 @@ if(empty($_SESSION['user_id'])) {
     exit();
 }
 
-/*
+
 try {
     // Check if user already has an active villa
     $check_active_villa_SQL = "SELECT * FROM villas WHERE `user_id` = :user_id";
@@ -35,10 +35,11 @@ try {
 } catch (PDOException $e) {
     $message = 'PDO Exception: <strong>'.$e->getMessage().'</strong>';
     exit($message);
-}*/
+}
 
 // Save Post Data into Variables
 $title = trim($_POST['title']);
+$excerpt = trim($_POST['excerpt']);
 
 $state = $_POST['state'];
 $city = $_POST['city'];
@@ -72,7 +73,13 @@ $email = trim($_POST['email']);
 
 $errors = [];
 $inputs = [];
-
+//Check if excerpt is valid - permitted characters
+if(!isset($excerpt) || !preg_match("/\w/", $excerpt) || strlen($excerpt) > 150) {
+    var_dump($excerpt); die;
+    $errors['excerpt'] = 'Please a valid excerpt, less than 150 characters.';
+} else {
+    $inputs['excerpt'] = $excerpt;
+}
 // Check if state is one of the array elements
 if(!in_array($state, $states) || empty($state)) {
     $errors['state'] = 'Your state is not valid.';
@@ -281,10 +288,11 @@ if(count($errors) > 0) {
 
 try {
     // Insert data into villas table
-    $sql = "INSERT INTO villas (`user_id`, title, state, city, address, style, zone, construction, capacity, building_area, plot_area, bedrooms, bathrooms, WC, kitchen, living_room, rating, price, extras, description, name, surname, phone, email) VALUES (:user_id, :title, :state, :city, :address, :style, :zone, :construction, :capacity, :building_area, :plot_area, :bedrooms, :bathrooms, :WC, :kitchen, :living_room, :rating, :price, :extras, :description, :name, :surname, :phone, :email)";
+    $sql = "INSERT INTO villas (`user_id`, title, excerpt, state, city, address, style, zone, construction, capacity, building_area, plot_area, bedrooms, bathrooms, WC, kitchen, living_room, rating, price, extras, description, name, surname, phone, email) VALUES (:user_id, :title, :excerpt, :state, :city, :address, :style, :zone, :construction, :capacity, :building_area, :plot_area, :bedrooms, :bathrooms, :WC, :kitchen, :living_room, :rating, :price, :extras, :description, :name, :surname, :phone, :email)";
     $values = [
         ':user_id' => $_SESSION['user_id'],
         ':title' => $title,
+        ':excerpt' => $excerpt,
         ':state' => $state,
         ':city' => $city,
         ':address' => $address,

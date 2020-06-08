@@ -9,7 +9,7 @@ if(empty($_SESSION['user_id'])) {
     exit();
 }
 
-/*
+
 try {
     // Check if user already has an active villa
     $check_active_villa_SQL = "SELECT * FROM villas WHERE `user_id` = :user_id";
@@ -26,7 +26,6 @@ try {
     $message = 'PDO Exception: <strong>'.$e->getMessage().'</strong>';
     exit($message);
 }
-*/
 
 $title = "Publish";
 include 'layout/header.php';
@@ -58,7 +57,6 @@ if(isset($_SESSION['inputs'])) {
         <div class="container">
             <ol class="breadcrumb pb-0">
                 <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                <li class="breadcrumb-item"><a href="login.php">Login</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Publish</li>
             </ol>
         </div>
@@ -128,7 +126,6 @@ if(isset($_SESSION['inputs'])) {
                                 <option selected>Choose City</option>
                             </select>
                         </div>
-
                         <div class="form-group d-flex justify-content-between align-items-baseline">
                             <label class="">Address</label>
                             <input type="text" name="address" value="<?= isset($inputs['address']) ? $inputs['address'] : '' ?>" class="form-control w-75 <?= isset($errors['address']) ? 'is-invalid' : '' ?>" id="address" placeholder="Enter Address">
@@ -365,9 +362,9 @@ if(isset($_SESSION['inputs'])) {
                                 </div>
                                 <select name="rating" class="form-control form-control-sm">
                                     <option value="">Choose Stars</option>
-                                    <option value="1" <?= (isset($_GET['rating']) && $_GET['rating'] == 1) ? 'selected' : '' ?>>1</option>
-                                    <option value="2" <?= (isset($_GET['rating']) && $_GET['rating'] == 2) ? 'selected' : '' ?>>2</option>
-                                    <option value="3" <?= (isset($_GET['rating']) && $_GET['rating'] == 3) ? 'selected' : '' ?>>3</option>
+                                    <option value="1" <?= (isset($inputs['rating']) && $inputs['rating'] == 1) ? 'selected' : '' ?>>1</option>
+                                    <option value="2" <?= (isset($inputs['rating']) && $inputs['rating'] == 2) ? 'selected' : '' ?>>2</option>
+                                    <option value="3" <?= (isset($inputs['rating']) && $inputs['rating'] == 3) ? 'selected' : '' ?>>3</option>
                                 </select>
                             </div>
                         </div>

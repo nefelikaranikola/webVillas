@@ -12,7 +12,7 @@
   if (isset($_GET['page']))
     $curPage = $_GET['page'];
   else
-    $curPage = 1;
+    $cur_page = 1;
 
   //Count pointer of the first record
   $startIndex = ($curPage-1) * $recordsPerPage;

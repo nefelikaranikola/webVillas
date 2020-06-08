@@ -5,7 +5,6 @@ require 'config.php';
 include 'src/inc_index.php';
 $title = "Home";
 include 'layout/header.php';
-
 $states = array_keys(json_decode(file_get_contents("src/location.json"), true));
 
 ?>
@@ -82,7 +81,7 @@ $states = array_keys(json_decode(file_get_contents("src/location.json"), true));
           <?php foreach ($records as $record) : ?>
               <div class="col-md">
                   <div class="card w-100">
-                      <img src="img/pelion.jpg" class="card-img-top" alt="exotic">
+                  <img src="<?= $record['name'] ? 'img/uploads/'.$record['name'] : 'img/pelion.jpg' ?>" class="card-img-cover" alt="exotic villa">
                       <div class="card-body">
                           <h5 class="card-title"><?= $record['title'] ?></h5>
                           <p class="card-text"><?= $record['excerpt'] ?></p>

@@ -13,5 +13,6 @@
     "Storage": "fas fa-archive",
     "Safety door": "fas fa-door-closed",
     "Parking": "fas fa-warehouse",
-    "Solar panel": "fas fa-solar-panel"
+    "Solar panel": "fas fa-solar-panel",
+    "Gym": "fas fa-dumbbell"
 }

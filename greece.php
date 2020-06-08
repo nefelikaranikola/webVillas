@@ -24,7 +24,7 @@ include 'layout/header.php';
         <h6 class="text-muted">Experts will guide you to your dream Villa</h6>
         <p class="pt-5">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia perferendis distinctio aspernatur quidem illum quam adipisci excepturi, deleniti quos corrupti dolor voluptas, magnam sunt sed? <br>
         Incidunt similique, tempora cumque aspernatur eveniet eum, hic consequatur non ad officiis maiores illo odio excepturi facilis a quae est fugit et harum, placeat numquam laborum quis nostrum! Quibusdam ex consectetur cumque ad nam aut, similique facilis sit autem tempora sint nostrum sequi perferendis libero in eum exercitationem pariatur perspiciatis. <br>
-        Numquam, sequi. Nam labore vitae dolorem eveniet, ullam dolorum provident odit ipsa nostrum, vel eos consequuntur vero possimus officiis. Magnam accusantium tempora esse ratione illum sequi iusto aliquid a pariatur dignissimos, eos ipsa. Amet, ipsam autem quia fuga consequuntur explicabo molestiae ad exercitationem facilis non?</p>
+        Numquam, sequi. Nam labore vitae dolorem eveniet, ullam dolorum provident odit ipsa nostrum, vel eos consequuntur vero possimus officiis. Magnam accusantium tempora esse ratione illum sequi iusto aliquid a pariatur dignissimos, eos ipsa. Amet, ipsam autem quia fuga consequuntur explicabo molestiae ad exercitationem facilis non? Contact us for more information!</p>
 
         <h6>Kind regards, <br> webVillas</h6>
 

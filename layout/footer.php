@@ -5,3 +5,5 @@
         <p class="small mb-0">Developed by Nefeli Karanikola</p>
     </div>
 </footer>
+
+<!-- no scripts -->

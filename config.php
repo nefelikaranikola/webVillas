@@ -8,7 +8,7 @@ $database = [
     'password' => 'Villas@@2020!'
 ];
 
-// PDO dsn
+// PDO dsn connection
 $dsn = 'mysql:host='.$database['host'].';dbname='.$database['dbname'];
 
 // Create a PDO instance

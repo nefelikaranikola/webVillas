@@ -26,8 +26,6 @@ $extras = !is_null($record['extras']) ? json_decode($record['extras']) : [];
 
     <div class="container py-4">
 
-
-
         <div class="row row-cols-4 my-5 justify-content-center">
             <?php foreach($photos as $photo) : ?>
                 <div class="col p-2">
@@ -42,13 +40,12 @@ $extras = !is_null($record['extras']) ? json_decode($record['extras']) : [];
             <h6 class="text-muted"><?= $record['capacity'] ?> guests · <?= $record['bedrooms'] ?> beds · <?= $record['bathrooms'] ?> bathrooms</h6>
         </div>
 
-
-
-
         <div class="m-3 pt-5">
             <h3><i class="fas fa-align-left"></i> Description</h3>
             <p><?= $record['description'] ?></p>
-
+            <p><?= $record['title'] ?> is located in <?= $record['state'] ?>, <?= $record['city'] ?>. It is a <?= $record['style'] ?> villa in a <?= $record['zone'] ?> area.</p>
+            <p>The building's area is <?= $record['building_area'] ?>m2 and plot area is <?= $record['plot_area'] ?>m2</p>
+            <p><?= $record['type'] ?></p>
         </div>
 
         <div class="m-3 pt-5">

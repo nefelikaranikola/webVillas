@@ -37,4 +37,5 @@ function sendCodeViaEmail($email, $username, $activation_code) {
         header('Location: ../login.php?error='.$e->errorMessage());
         exit();
     }
+    //check
 }

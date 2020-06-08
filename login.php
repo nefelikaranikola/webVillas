@@ -12,7 +12,7 @@ include 'layout/header.php';
     <div class="container py-5" style="height: 85vh;">
         <div class="row my-5">
             <div class="col-6 offset-3 p-5 bg-light border border-secondary rounded">
-                <h3 class="mb-4 text-center">Login You</h3>
+                <h3 class="mb-4 text-center">Log in</h3>
 
                 <?php if(!empty($_GET['success'])) : ?>
                     <div class="alert alert-success text-center" role="alert">

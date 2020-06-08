@@ -23,6 +23,7 @@
 
 
     <header>
+        <!-- Menu -->
         <nav class="navbar navbar-expand-lg <?= (isset($_COOKIE['css']) && $_COOKIE['css'] == 'light') ? 'navbar_light bg-light' : 'navbar-dark bg-dark' ?> py-3">
             <div class="container">
                 <a class="navbar-brand" href="/">

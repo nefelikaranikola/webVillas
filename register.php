@@ -6,7 +6,7 @@ require 'config.php';
 
 $title = "Register";
 include 'layout/header.php';
-
+//vardump();
 /*
     if(isset($_SESSION['errors']))
         $errors = $_SESSION['errors'];

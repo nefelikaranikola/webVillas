@@ -35,7 +35,7 @@ try {
     }
 
     //Update status to activated (1).. query not prepared stmt
-    // activate
+    // activate account
     $update = 'UPDATE users SET `status` = 1 WHERE email = :email';
     $statement = $pdo->prepare($update);
     $statement->execute([
