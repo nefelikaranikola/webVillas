@@ -7,37 +7,14 @@ $locations = json_decode(file_get_contents("location.json"), true);
 $states = array_keys($locations);
 $extras_json = json_decode(file_get_contents("extras.json"), true);
 
-//print_r($_POST); die;
-//var_dump($extras_json); die;
-
 // Check if user is logged in
 if(empty($_SESSION['user_id'])) {
     header("Location: ../login.php?error=Please log in.");
     exit();
 }
 
-/*
-try {
-    // Check if user already has an active villa
-    $check_active_villa_SQL = "SELECT * FROM villas WHERE `user_id` = :user_id";
-    $statement = $pdo->prepare($check_active_villa_SQL);
-    $statement->execute([
-        ':user_id' => $_SESSION['user_id']
-    ]);
-
-    if($statement->rowCount() > 0) {
-        $errors['general'] = 'Already active villa';
-        $_SESSION['errors'] = $errors;
-        $_SESSION['inputs'] = $inputs;
-        header('Location: ../publish.php');
-        exit();
-    }
-} catch (PDOException $e) {
-    $message = 'PDO Exception: <strong>'.$e->getMessage().'</strong>';
-    exit($message);
-}*/
-
 // Save Post Data into Variables
+$id = $_POST['id'];
 $title = trim($_POST['title']);
 $excerpt = trim($_POST['excerpt']);
 
@@ -87,7 +64,6 @@ if(!isset($excerpt) || !preg_match("/\w/", $excerpt) || strlen($excerpt) > 150) 
 } else {
     $inputs['excerpt'] = $excerpt;
 }
-
 // Check if state is one of the array elements
 if(!in_array($state, $states) || empty($state)) {
     $errors['state'] = 'Your state is not valid.';
@@ -289,16 +265,15 @@ if(!is_null($photos)) {
 
 if(count($errors) > 0) {
     $_SESSION['errors'] = $errors;
-    $_SESSION['inputs'] = $inputs;
-    header('Location: ../publish.php');
+    header('Location: ../edit_villa.php?id='.$id);
     exit();
 }
 
 try {
     // Insert data into villas table
-    $sql = "INSERT INTO villas (`user_id`, title, excerpt, state, city, address, style, zone, construction, capacity, building_area, plot_area, bedrooms, bathrooms, WC, kitchen, living_room, rating, price, extras, description, name, surname, phone, email) VALUES (:user_id, :title, :excerpt, :state, :city, :address, :style, :zone, :construction, :capacity, :building_area, :plot_area, :bedrooms, :bathrooms, :WC, :kitchen, :living_room, :rating, :price, :extras, :description, :name, :surname, :phone, :email)";
+    $sql = "UPDATE villas SET title = :title, excerpt = :excerpt, state = :state, city = :city, address = :address, style = :style, zone = :zone, construction = :construction, capacity = :capacity, building_area = :building_area, plot_area = :plot_area, bedrooms = :bedrooms, bathrooms = :bathrooms, WC = :WC, kitchen = :kitchen, living_room = :living_room, rating = :rating, price = :price, extras = :extras, description = :description, name = :name, surname = :surname, phone = :phone, email = :email WHERE id = :id";
     $values = [
-        ':user_id' => $_SESSION['user_id'],
+        ':id' => $id,
         ':title' => $title,
         ':excerpt' => $excerpt,
         ':state' => $state,
@@ -334,14 +309,20 @@ try {
 
     // Photos insert to db and save to server
     if(!is_null($photos)) {
-        $villa_id = $pdo->lastInsertId();
+        $sql = "DELETE FROM media WHERE villa_id = :villa_id";
+        $values = [
+            ':villa_id' => $id,
+        ];
+
+        $statement = $pdo->prepare($sql);
+        $insert_data = $statement->execute($values);
 
         foreach($photos['tmp_name'] as $index => $photo_tmp_name) {
             $photo_final_name = time().uniqid(mt_rand(100,999)).'.jpg';
 
             $sql = "INSERT INTO media (villa_id, name, description) VALUES (:villa_id, :name, :description)";
             $values = [
-                ':villa_id' => $villa_id,
+                ':villa_id' => $id,
                 ':name' => $photo_final_name,
                 ':description' => 'desc'
             ];
@@ -367,8 +348,7 @@ try {
         exit();
     } else {
         $_SESSION['errors'] = $errors;
-        $_SESSION['inputs'] = $inputs;
-        header('Location: ../publish.php');
+        header('Location: ../edit_villa.php?id='.$id);
         exit();
     }
 } catch(PDOException $e) {

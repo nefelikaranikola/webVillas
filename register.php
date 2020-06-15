@@ -29,7 +29,7 @@ if(isset($_SESSION['inputs'])) {
 <!-- HTML -->
 <main style="background-image: url(../img/bg.png);">
 
-    <div class="container py-5" style="height: 85vh;">
+    <div class="container py-5" style="height: 100vh;">
         <div class="row my-5">
             <div class=" bg-light col-6 offset-3 p-5 border border-secondary rounded">
                 <h3 class="mb-4 text-center">Create your Account</h3>
@@ -114,3 +114,4 @@ if(isset($_SESSION['inputs'])) {
 </main>
 
 <?php include 'layout/footer.php'; ?>
+<?php include 'layout/scripts.php'; ?>

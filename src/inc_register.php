@@ -53,6 +53,27 @@ if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     $inputs['email'] = $email;
 }
 
+// Check if recaptcha
+if(isset($_POST['g-recaptcha-response'])){
+    $captcha = $_POST['g-recaptcha-response'];
+}
+
+if(!$captcha){
+    $errors['general'] = 'Please check the captcha form';
+    exit;
+}
+$secretKey = "6LdRGvwUAAAAAKIFANHWOh5bzs8LGgvu0AHpI8Nx";
+$ip = $_SERVER['REMOTE_ADDR'];
+// post request to server
+$url = 'https://www.google.com/recaptcha/api/siteverify?secret=' . urlencode($secretKey) .  '&response=' . urlencode($captcha);
+$response = file_get_contents($url);
+$responseKeys = json_decode($response,true);
+// should return JSON with success as true
+if(!$responseKeys["success"]) {
+    $errors['general'] = 'You are a spammer';
+    exit;
+}
+
 try {
     // Check if username, email is unique
     if(!isset($errors['username'])) {
@@ -114,27 +135,6 @@ try {
         $_SESSION['errors'] = $errors;
         header('Location: ../register.php');
         exit();
-    }
-
-    // Check if form was submitted:
-    if(isset($_POST['g-recaptcha-response'])){
-        $captcha=$_POST['g-recaptcha-response'];
-    }
-    if(!$captcha){
-        echo '<h2>Please check the captcha form.</h2>';
-        exit;
-    }
-    $secretKey = "6LdRGvwUAAAAAKIFANHWOh5bzs8LGgvu0AHpI8Nx";
-    $ip = $_SERVER['REMOTE_ADDR'];
-    // post request to server
-    $url = 'https://www.google.com/recaptcha/api/siteverify?secret=' . urlencode($secretKey) .  '&response=' . urlencode($captcha);
-    $response = file_get_contents($url);
-    $responseKeys = json_decode($response,true);
-    // should return JSON with success as true
-    if($responseKeys["success"]) {
-        echo '<h2>Thanks for posting comment</h2>';
-    } else {
-        echo '<h2>You are spammer ! Get the @$%K out</h2>';
     }
 } catch(PDOException $e) {
     // if something wrong happens in the try{...} block execution comes here

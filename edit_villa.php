@@ -9,25 +9,24 @@ if(empty($_SESSION['user_id'])) {
     exit();
 }
 
-/*
-try {
-    // Check if user already has an active villa
-    $check_active_villa_SQL = "SELECT * FROM villas WHERE `user_id` = :user_id";
-    $statement = $pdo->prepare($check_active_villa_SQL);
-    $statement->execute([
-        ':user_id' => $_SESSION['user_id']
-    ]);
+if(empty($_GET['id'])) {
+    header("Location: /");
+    exit();
+}
 
-    if($statement->rowCount() > 0) {
-        header('Location: browse.php?error=Already active villa');
-        exit();
-    }
-} catch (PDOException $e) {
-    $message = 'PDO Exception: <strong>'.$e->getMessage().'</strong>';
-    exit($message);
-}*/
+$sql = 'SELECT * FROM villas WHERE id = :id';
+$statement = $pdo->prepare($sql);
+$statement->execute([
+    ':id' => $_GET['id']
+]);
+$inputs = $statement->fetch();
 
-$title = "Publish";
+if($inputs['id'] != $_GET['id']) {
+    header("Location: /");
+    exit();
+}
+
+$title = "Edit Villa";
 include 'layout/header.php';
 
 // Get the contents of the JSON file as associative array
@@ -36,14 +35,9 @@ $locations_json_obj = file_get_contents("src/location.json");
 $extras_json = json_decode(file_get_contents("src/extras.json"), true);
 
 $errors = isset($_SESSION['errors']) ? $_SESSION['errors'] : [];
-$inputs = isset($_SESSION['inputs']) ? $_SESSION['inputs'] : [];
 
 if(isset($_SESSION['errors'])) {
     unset($_SESSION['errors']);
-}
-
-if(isset($_SESSION['inputs'])) {
-    unset($_SESSION['inputs']);
 }
 
 ?>
@@ -65,7 +59,7 @@ if(isset($_SESSION['inputs'])) {
     <div class="container py-5">
 
         <div class="text-center mb-3">
-            <h1>Publish your Villa!</h1>
+            <h1>Edit your Villa!</h1>
             <?php if(isset($errors['general'])) : ?>
                 <div class="alert alert-danger text-center" role="alert">
                     <?= $errors['general'] ?>
@@ -73,7 +67,9 @@ if(isset($_SESSION['inputs'])) {
             <?php endif; ?>
         </div>
 
-        <form action="src/inc_publish.php" method="POST" enctype="multipart/form-data">
+        <form action="src/inc_edit_villa.php" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="id" value="<?= $_GET['id'] ?>">
+
             <div class="row">
                 <div class="col-md">
                     <div class="border border-secondary rounded bg-white p-5 my-3">
@@ -224,7 +220,7 @@ if(isset($_SESSION['inputs'])) {
 
                         <div class="form-group d-flex justify-content-between align-items-baseline">
                             <label>Plot Area *</label>
-                            <input type="number" name="plot_area" value="<?= isset($inputs['plot']) ? $inputs['plot'] : '' ?>" class="form-control w-75 <?= isset($errors['plot']) ? 'is-invalid' : '' ?>" id="plot_area" placeholder="Set Plot Area" pattern="[0-9]+" required>
+                            <input type="number" name="plot_area" value="<?= isset($inputs['plot_area']) ? $inputs['plot_area'] : '' ?>" class="form-control w-75 <?= isset($errors['plot_area']) ? 'is-invalid' : '' ?>" id="plot_area" placeholder="Set Plot Area" pattern="[0-9]+" required>
                             <?php if(isset($errors['plot_area'])) : ?>
                                 <div class="invalid-feedback">
                                     <?= $errors['plot_area'] ?>
@@ -234,7 +230,7 @@ if(isset($_SESSION['inputs'])) {
 
                         <div class="form-group d-flex justify-content-between align-items-baseline">
                             <label>Type</label>
-                            <select class="custom-select w-75" id="inlineFormCustomSelect" name="type" required>
+                            <select class="custom-select w-75" id="inlineFormCustomSelect" name="type">
                                 <option value="">Choose Type</option>
                                 <option value="Duplex" <?= (isset($inputs['type']) && $inputs['type'] == 'Duplex;') ? 'selected' : '' ?>>Duplex</option>
                                 <option value="Maisonette" <?= (isset($inputs['type']) && $inputs['type'] == 'Maisonette;') ? 'selected' : '' ?>>Maisonette</option>
@@ -350,7 +346,7 @@ if(isset($_SESSION['inputs'])) {
                             <div class="row row-cols-2 px-5">
                                 <?php foreach($extras_json as $extra => $icon) : ?>
                                     <div class="form-check py-3">
-                                        <input class="form-check-input" name="extras[]" type="checkbox" value="<?= $extra ?>" id="<?= $extra ?>" <?= (isset($inputs['extras']) && in_array($extra, $inputs['extras']))   ? 'checked' : '' ?>>
+                                        <input class="form-check-input" name="extras[]" type="checkbox" value="<?= $extra ?>" id="<?= $extra ?>" <?= in_array($extra, json_decode($inputs['extras'])) ? 'checked' : '' ?>>
                                         <label class="form-check-label" for="<?= $extra ?>"><i class="<?= $icon ?>"></i> <?= $extra ?></label>
                                     </div>
                                 <?php endforeach; ?>
@@ -384,7 +380,7 @@ if(isset($_SESSION['inputs'])) {
                 <div class="col-md-6">
                     <div class="border border-secondary rounded bg-white p-5 my-3">
                         <div class="text-center mb-4">
-                            <h4><i class="fas fa-camera"></i> Photos</h4>
+                            <h4><i class="fas fa-camera"></i> New Photos</h4>
                         </div>
                         <div class="custom-file pb-5">
                             <input type="file" name="photos[]" class="custom-file-input" id="customFile" accept=".jpg, .jpeg" multiple>
@@ -451,7 +447,7 @@ if(isset($_SESSION['inputs'])) {
 
             </div>
             <div class="ml-3 text-right">
-                <button type="submit" class="btn btn-secondary py-2 px-3">Publish</button>
+                <button type="submit" class="btn btn-secondary py-2 px-3">Edit</button>
             </div>
         </form>
     </div>

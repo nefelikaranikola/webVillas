@@ -9,7 +9,7 @@ include 'layout/header.php';
 
 <!-- HTML -->
 <main style="background-image: url(../img/bg.png);">
-    <div class="container py-5" style="height: 85vh;">
+    <div class="container py-5" style="height: 100vh;">
         <div class="row my-5">
             <div class="col-6 offset-3 p-5 bg-light border border-secondary rounded">
                 <h3 class="mb-4 text-center">Log in</h3>
@@ -65,3 +65,4 @@ include 'layout/header.php';
 </main>
 
 <?php include 'layout/footer.php'; ?>
+<?php include 'layout/scripts.php'; ?>

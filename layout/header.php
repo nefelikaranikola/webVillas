@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="css/style_dark.css">
     <link href="css/lightbox.css" rel="stylesheet"/>
 
+    <? if($_COOKIE['css'] == 'light') : 'css/style_light.css' ?>
+
 
     <script src="https://kit.fontawesome.com/1afd2f5de6.js" crossorigin="anonymous"></script>
 
@@ -24,7 +26,7 @@
 
     <header>
         <!-- Menu -->
-        <nav class="navbar navbar-expand-lg <?= (isset($_COOKIE['css']) && $_COOKIE['css'] == 'light') ? 'navbar_light bg-light' : 'navbar-dark bg-dark' ?> py-3">
+        <nav class="navbar navbar-expand-lg <?= (isset($_COOKIE['css']) && $_COOKIE['css'] == 'light') ? 'navbar-light bg-light' : 'navbar-dark bg-dark' ?> py-3">
             <div class="container">
                 <a class="navbar-brand" href="/">
                     <img src="https://artisweb.gr/wp-content/uploads/2020/04/ArtisWeb-logo.png" width="30" height="30" class="d-inline-block align-top" alt="">

@@ -38,6 +38,13 @@ $extras = !is_null($record['extras']) ? json_decode($record['extras']) : [];
         <div class="text-center mb-5">
             <h1><?= $record['title'] ?></h1>
             <h6 class="text-muted"><?= $record['capacity'] ?> guests · <?= $record['bedrooms'] ?> beds · <?= $record['bathrooms'] ?> bathrooms</h6>
+
+            <?php if(isset($_SESSION['user_id']) && $_SESSION['user_id'] == $record['user_id']) : ?>
+                <div class="mt-4 d-flex justify-content-center">
+                    <a class="btn btn-secondary mr-2" href="edit_villa.php?id=<?= $record['id'] ?>">Edit</a>
+                    <button type="button" class="btn btn-danger ml-2" data-toggle="modal" data-target="#exampleModal">Delete</button>
+                </div>
+            <?php endif; ?>
         </div>
 
         <div class="m-3 pt-5">
@@ -95,10 +102,6 @@ $extras = !is_null($record['extras']) ? json_decode($record['extras']) : [];
                     <div class="text-center mt-5">
                         <button type="submit" class="btn btn-secondary py-2 px-3">Book Here</button>
                     </div>
-                    <div class="text-center mt-5">
-                        <button type="submit" class="btn btn-secondary py-2 px-3">Edit</button>
-                        <button type="submit" class="btn btn-secondary py-2 px-3">Delete</button>
-                    </div>
                 </div>
             </div>
         </div>
@@ -110,6 +113,34 @@ $extras = !is_null($record['extras']) ? json_decode($record['extras']) : [];
         </div>-->
     </div>
 </main>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Delete Villa</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+        <div class="modal-body">
+                Are you sure?
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+            <form action="src/inc_delete_villa.php" method="GET">
+                <input type="hidden" name="villa_id" value="<?= $record['id'] ?>">
+
+                <button type="submit" class="btn btn-danger">OK</button>
+            </form>
+        </div>
+        </div>
+    </div>
+</div>
 
 <?php include 'layout/footer.php'; ?>
 <?php include 'layout/scripts.php'; ?>
