@@ -3,8 +3,8 @@
 // Database Params
 $database = [
     'host' => 'localhost',
-    'dbname' => 'dimitris_webvillas',
-    'user' => 'dimitris_webvillasuser',
+    'dbname' => 'webvillas',
+    'user' => 'webvillasuser',
     'password' => 'Villas@@2020!'
 ];
 

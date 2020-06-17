@@ -9,7 +9,7 @@ if(empty($_SESSION['user_id'])) {
     exit();
 }
 
-/*
+
 try {
     // Check if user already has an active villa
     $check_active_villa_SQL = "SELECT * FROM villas WHERE `user_id` = :user_id";
@@ -25,7 +25,7 @@ try {
 } catch (PDOException $e) {
     $message = 'PDO Exception: <strong>'.$e->getMessage().'</strong>';
     exit($message);
-}*/
+}
 
 $title = "Publish";
 include 'layout/header.php';
@@ -451,7 +451,7 @@ if(isset($_SESSION['inputs'])) {
 
             </div>
             <div class="ml-3 text-right">
-                <button type="submit" class="btn btn-secondary py-2 px-3">Publish</button>
+                <button type="submit" class="btn btn-secondary <?= (isset($_COOKIE['css']) && $_COOKIE['css'] == 'light') ? 'btn btn-light btn-outline-dark' : 'btn btn-secondary' ?> py-2 px-3">Publish</button>
             </div>
         </form>
     </div>

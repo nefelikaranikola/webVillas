@@ -7,16 +7,13 @@ $locations = json_decode(file_get_contents("location.json"), true);
 $states = array_keys($locations);
 $extras_json = json_decode(file_get_contents("extras.json"), true);
 
-//print_r($_POST); die;
-//var_dump($extras_json); die;
-
 // Check if user is logged in
 if(empty($_SESSION['user_id'])) {
     header("Location: ../login.php?error=Please log in.");
     exit();
 }
 
-/*
+
 try {
     // Check if user already has an active villa
     $check_active_villa_SQL = "SELECT * FROM villas WHERE `user_id` = :user_id";
@@ -35,7 +32,7 @@ try {
 } catch (PDOException $e) {
     $message = 'PDO Exception: <strong>'.$e->getMessage().'</strong>';
     exit($message);
-}*/
+}
 
 // Save Post Data into Variables
 $title = trim($_POST['title']);

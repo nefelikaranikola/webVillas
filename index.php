@@ -72,7 +72,7 @@ $states = array_keys(json_decode(file_get_contents("src/location.json"), true));
               </div>
           </div>
 
-          <button class="btn btn-secondary px-3" type="submit">Let's go!</button>
+          <button class="btn btn-secondary <?= (isset($_COOKIE['css']) && $_COOKIE['css'] == 'light') ? 'btn btn-light' : 'btn btn-secondary' ?> px-3" type="submit">Let's go!</button>
       </form>
 
       <h3 class="my-5 text-center">Latest Entries</h3>
@@ -81,7 +81,7 @@ $states = array_keys(json_decode(file_get_contents("src/location.json"), true));
           <?php foreach ($records as $record) : ?>
               <div class="col-md">
                   <div class="card w-100">
-                  <img src="<?= $record['name'] ? 'img/uploads/'.$record['name'] : 'img/pelion.jpg' ?>" class="card-img-cover" alt="exotic villa">
+                  <img src="<?= $record['name'] ? 'img/uploads/'.$record['name'] : 'img/main.jpg' ?>" class="card-img-cover" alt="exotic villa">
                       <div class="card-body">
                           <h5 class="card-title"><?= $record['title'] ?></h5>
                           <p class="card-text"><?= $record['excerpt'] ?></p>
@@ -92,7 +92,7 @@ $states = array_keys(json_decode(file_get_contents("src/location.json"), true));
           <?php endforeach; ?>
 
       </div>
-      <div class="d-flex">
+      <div class="d-flex mt-3">
         <form method="POST" action="src/inc_css_cookie.php">
             <label class=" pl-2" for="">Change theme</label><br>
             <button type="submit"  name="css" value="dark" class="btn btn-secondary">Dark</button>

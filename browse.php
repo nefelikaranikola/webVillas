@@ -170,7 +170,7 @@ $records = $statement->fetchAll();
                     </div>
 
                     <div class="mt-3 text-right">
-                        <input type="submit" class="form-control btn btn-secondary" value="Submit">
+                        <input type="submit" class="form-control btn btn-secondary <?= (isset($_COOKIE['css']) && $_COOKIE['css'] == 'light') ? 'btn btn-light btn-outline-dark' : 'btn btn-secondary' ?>" value="Submit">
                     </div>
                 </form>
             </div>
@@ -183,7 +183,7 @@ $records = $statement->fetchAll();
                         <div class="row no-gutters">
 
                             <div class="col-md-4 p-3">
-                                <img src="<?= $record['name'] ? 'img/uploads/'.$record['name'] : 'img/pelion.jpg' ?>" class="card-img-cover" alt="exotic villa">
+                                <img src="<?= $record['name'] ? 'img/uploads/'.$record['name'] : 'img/main.jpg' ?>" class="card-img-cover" alt="exotic villa">
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
