@@ -3,9 +3,9 @@
 // Database Params
 $database = [
     'host' => 'localhost',
-    'dbname' => 'webvillas',
-    'user' => 'webvillasuser',
-    'password' => 'Villas@@2020!'
+    'dbname' => '********',
+    'user' => '*****',
+    'password' => '*******'
 ];
 
 // PDO dsn connection
