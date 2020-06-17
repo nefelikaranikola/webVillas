@@ -3,7 +3,7 @@ CREATE SCHEMA webvillas CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE webvillas;
 
  CREATE TABLE users (
-		`id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
         `username` VARCHAR(25) NOT NULL,
         `email` VARCHAR(100) NOT NULL,
         `password` VARCHAR(255) NOT NULL,
@@ -13,9 +13,9 @@ USE webvillas;
  );
 
  CREATE TABLE villas (
-		`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
         `user_id` INT UNSIGNED NOT NULL,
-		`title` VARCHAR(255) NOT NULL,
+	`title` VARCHAR(255) NOT NULL,
         `excerpt` TEXT NOT NULL,
         `description` TEXT NOT NULL,
         `state` VARCHAR(50) NOT NULL,
@@ -47,9 +47,9 @@ USE webvillas;
  );
 
  CREATE TABLE media(
-		`id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
         `villa_id` INT UNSIGNED NOT NULL,
-		`name` VARCHAR(30) NOT NULL,
+	`name` VARCHAR(30) NOT NULL,
         `description` TEXT NOT NULL,
         PRIMARY KEY (id),
         FOREIGN KEY (villa_id) REFERENCES villas(id)
